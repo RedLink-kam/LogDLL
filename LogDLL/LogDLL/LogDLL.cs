@@ -101,11 +101,9 @@ namespace LogDLL
                 return;
             }
 
-            using (StreamWriter sw = File.AppendText(path + filenameBuilt))
-            {
-                string curTimeString = DateTime.Now.ToString("HH:mm:ss");
-                sw.WriteLine(curDateString + " " + curTimeString + " | " + message);
-            }
+            string curTimeString = DateTime.Now.ToString("HH:mm:ss");
+            
+            File.AppendAllText(path + filenameBuilt, curDateString + " " + curTimeString + " | " + message + "\n", Encoding.Default);
 
             //Done here
             output.Append(string.Format("LogDLL Success: New Log Entry succesfully written to {0}", path + filenameBuilt));
